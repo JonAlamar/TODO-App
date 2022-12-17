@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <div class="container my-5">
+        <a href="" id="todoheader"><h1 class="display-4 text-primary text-center">TODO-LIST</h1></a>
+        <div class="row align-items-center">
+            <div class="col">
+                <form action="{% url 'search_todo' %}" method="get">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Search tasks" name="search">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit"><i
+                                    class="fa-sharp fa-solid fa-magnifying-glass"></i> Search
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container rounded bg-white my-5 shadow">
+        {% for task in tasks %}
+            <div class="row align-items-center py-2">
+                <div class="col-md-8">
+                    <p class="fw-bold my-1">{{ task.task_name }}</p>
+                    <p><small>Created: {{ task.created_at }}</small></p>
+                </div>
+                <div class="col-md-4 text-md-end text-start">
+
+
+                    <a href="{% url 'update_todo' task.id %}">
+                        <button type="submit" id="update" class="btn border-primary"><i
+                                class="fa-regular fa-pen-to-square text-primary"></i>
+                        </button>
+                    </a>
+                    <a href="{% url 'delete_todo' task.id %}">
+                        <button type="submit" id="delete" class="btn border-danger"><i
+                                class="fa-solid fa-x text-danger"></i></button>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="container">
+        <a href="{% url 'add_todo' %}" id="gotoadd" class="btn btn-success"><i class="fa-regular fa-plus"></i> Add a new
+            task</a>
+    </div>
+{% endblock %}

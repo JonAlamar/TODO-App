@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+    <div class="container my-5 p-0">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div class="card mx-auto" style="width: 30rem;">
+                    <div class="card-header">
+                        Update Task
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item pt-3 pb-0 ">
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ form.as_div }}
+                                <button type="submit" id="update" class="btn btn-primary my-3"><i
+                                        class="fa-regular fa-pen-to-square"></i> Update
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <button id="goback" class="btn btn-warning my-2"><i class="fa-solid fa-arrow-left"></i> Go back</button>
+            </div>
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
